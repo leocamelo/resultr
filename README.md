@@ -1,0 +1,2 @@
+# resultr
+Ruby beautiful results
