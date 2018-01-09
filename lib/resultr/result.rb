@@ -27,7 +27,7 @@ module Resultr
     end
 
     def then(&block)
-      result_proxy = Resultr::ResultProxy.new(self)
+      result_proxy = ::Resultr::ResultProxy.new(self)
       result_proxy.instance_eval(&block)
     end
   end
