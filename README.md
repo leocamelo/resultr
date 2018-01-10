@@ -1,2 +1,2 @@
-# resultr
+# Resultr
 Ruby beautiful results
