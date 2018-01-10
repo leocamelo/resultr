@@ -11,11 +11,11 @@ module Resultr
     end
 
     def ok?
-      @kind === :ok
+      @kind == :ok
     end
 
     def err?
-      @kind === :err
+      @kind == :err
     end
 
     def expect!(message)

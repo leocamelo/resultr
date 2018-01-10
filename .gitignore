@@ -1,2 +1,6 @@
 .ruby-version
 .ruby-gemset
+.bundle
+.DS_Store
+Gemfile.lock
+tags
