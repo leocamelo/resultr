@@ -22,7 +22,7 @@ module Resultr
       if ok?
         value
       elsif err?
-        raise message
+        raise ::Resultr::ExpectationError, message
       end
     end
 

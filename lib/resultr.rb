@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'resultr/version'
+require 'resultr/expectation_error'
 require 'resultr/result'
 require 'resultr/result_proxy'
 
