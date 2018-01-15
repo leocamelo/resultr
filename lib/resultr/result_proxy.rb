@@ -8,30 +8,33 @@ module Resultr
     end
 
     def ok
-      if @resolved
-        @result.value
-      elsif @result.ok?
-        @resolved = true
-
+      resolve_result :ok? do |value|
         if block_given?
-          yield(@result.value)
+          yield value
         else
-          @result.value
+          value
         end
       end
     end
 
     def err
-      if @resolved
-        @result.reason
-      elsif @result.err?
-        @resolved = true
-
+      resolve_result :err? do |reason|
         if block_given?
-          yield(@result.reason)
+          yield reason
         else
-          @result.reason
+          reason
         end
+      end
+    end
+
+    private
+
+    def resolve_result(condition)
+      if @resolved
+        @result.value
+      elsif @result.send(condition)
+        @resolved = true
+        yield @result.value
       end
     end
   end
