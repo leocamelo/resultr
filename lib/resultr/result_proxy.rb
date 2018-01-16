@@ -8,7 +8,7 @@ module Resultr
     end
 
     def ok
-      resolve_result :ok? do |value|
+      resolve_result_if :ok? do |value|
         if block_given?
           yield value
         else
@@ -18,7 +18,7 @@ module Resultr
     end
 
     def err
-      resolve_result :err? do |reason|
+      resolve_result_if :err? do |reason|
         if block_given?
           yield reason
         else
@@ -29,7 +29,7 @@ module Resultr
 
     private
 
-    def resolve_result(condition)
+    def resolve_result_if(condition)
       if @resolved
         @result.value
       elsif @result.send(condition)
