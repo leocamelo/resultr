@@ -21,7 +21,7 @@ module Resultr
     def and_then
       if ok?
         yield value
-      elsif err?
+      else
         self
       end
     end
@@ -29,7 +29,7 @@ module Resultr
     def or_else
       if err?
         yield reason
-      elsif ok?
+      else
         self
       end
     end
@@ -37,7 +37,7 @@ module Resultr
     def expect!(message)
       if ok?
         value
-      elsif err?
+      else
         raise ::Resultr::ExpectationError, message
       end
     end
