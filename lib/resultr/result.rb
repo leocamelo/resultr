@@ -26,7 +26,7 @@ module Resultr
       end
     end
 
-    def then
+    def thus
       if block_given?
         result_proxy = ::Resultr::ResultProxy.new(self)
         yield result_proxy

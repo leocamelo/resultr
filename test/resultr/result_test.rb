@@ -41,11 +41,11 @@ describe Resultr::Result do
     end
   end
 
-  describe '#then' do
+  describe '#thus' do
     it 'runs a given block in a ResultProxy context' do
       result = Resultr::Result.new(:ok, nil)
 
-      result.then do |result_proxy|
+      result.thus do |result_proxy|
         assert_instance_of Resultr::ResultProxy, result_proxy
       end
     end
