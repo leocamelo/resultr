@@ -41,6 +41,22 @@ describe Resultr::Result do
     end
   end
 
+  describe '#and_then' do
+    it 'runs a given block with result value when it has success' do
+      result = Resultr::Result.new(:ok, 1)
+      new_result = result.and_then { |value| Resultr.ok(value + 1) }
+
+      assert_equal 2, new_result.value
+    end
+
+    it 'dont runs a given block and return self when result has failed' do
+      result = Resultr::Result.new(:err, 1)
+      new_result = result.and_then { |value| Resultr.ok(value + 1) }
+
+      assert_equal result, new_result
+    end
+  end
+
   describe '#thus' do
     it 'runs a given block in a ResultProxy context' do
       result = Resultr::Result.new(:ok, nil)

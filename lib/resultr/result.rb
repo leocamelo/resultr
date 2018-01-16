@@ -18,19 +18,25 @@ module Resultr
       @kind == :err
     end
 
+    def and_then
+      if ok?
+        yield @value
+      elsif err?
+        self
+      end
+    end
+
     def expect!(message)
       if ok?
-        value
+        @value
       elsif err?
         raise ::Resultr::ExpectationError, message
       end
     end
 
     def thus
-      if block_given?
-        result_proxy = ::Resultr::ResultProxy.new(self)
-        yield result_proxy
-      end
+      result_proxy = ::Resultr::ResultProxy.new(self)
+      yield result_proxy
     end
   end
 end
