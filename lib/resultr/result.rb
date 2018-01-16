@@ -20,15 +20,23 @@ module Resultr
 
     def and_then
       if ok?
-        yield @value
+        yield value
       elsif err?
+        self
+      end
+    end
+
+    def or_else
+      if err?
+        yield reason
+      elsif ok?
         self
       end
     end
 
     def expect!(message)
       if ok?
-        @value
+        value
       elsif err?
         raise ::Resultr::ExpectationError, message
       end
