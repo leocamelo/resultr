@@ -7,7 +7,7 @@ Ruby beautiful results.
 
 Resultr provides a simple interface to work with computing results, highly
 inspired by [Rust results](https://doc.rust-lang.org/std/result) for handling
-errors on functions returns.
+errors on function returns.
 
 ## Installation
 

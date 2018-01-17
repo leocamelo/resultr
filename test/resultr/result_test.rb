@@ -5,21 +5,21 @@ require 'test_helper'
 describe Resultr::Result do
   describe '#ok?' do
     it 'returns if the result has success' do
-      success_result = Resultr::Result.new(:ok, nil)
-      failed_result = Resultr::Result.new(:err, nil)
+      good_result = Resultr::Result.new(:ok, nil)
+      bad_result = Resultr::Result.new(:err, nil)
 
-      assert success_result.ok?
-      refute failed_result.ok?
+      assert good_result.ok?
+      refute bad_result.ok?
     end
   end
 
   describe '#err?' do
     it 'returns if the result has failed' do
-      success_result = Resultr::Result.new(:ok, nil)
-      failed_result = Resultr::Result.new(:err, nil)
+      good_result = Resultr::Result.new(:ok, nil)
+      bad_result = Resultr::Result.new(:err, nil)
 
-      refute success_result.err?
-      assert failed_result.err?
+      refute good_result.err?
+      assert bad_result.err?
     end
   end
 
