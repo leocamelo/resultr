@@ -17,7 +17,7 @@ Add Resultr to your `Gemfile`:
 gem 'resultr'
 ```
 
-and run `bundle install` fro your shell.
+and run `bundle install` from your shell.
 
 To install the gem manually from your shell, run:
 
@@ -36,7 +36,7 @@ and bad results (err). You can store any kind of data on any kind of result.
   good_result = Resultr.ok(42)
   # => <Resultr::Result @kind=:ok @value=42>
 
-  good_result.ok? && !good_result.err?
+  good_result.ok?
   # => true
 
   good_result.value
@@ -45,7 +45,7 @@ and bad results (err). You can store any kind of data on any kind of result.
   bad_result = Resultr.err('foo')
   # => <Resultr::Result @kind=:err @value="foo">
 
-  bad_result.err? && !bad_result.ok?
+  bad_result.err?
   # => true
 
   bad_result.reason
