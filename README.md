@@ -5,7 +5,7 @@
 
 Ruby beautiful results.
 
-Resultr provides a simple interface to work with computing results, highly
+Resultr provides a simple interface to work with computation results, highly
 inspired by [Rust results](https://doc.rust-lang.org/std/result) for handling
 errors on function returns.
 
@@ -29,8 +29,8 @@ $ gem install resultr
 
 ### Good and bad results
 
-Resultr works with two kinds of results, good results (ok)
-and bad results (err). You can store any kind of data on any kind of result.
+Resultr works with two kinds of results, good results (`Resultr.ok`) and bad
+results (`Resultr.err`). You can store any kind of data on any kind of result.
 
 ```ruby
   good_result = Resultr.ok(42)
@@ -55,11 +55,53 @@ and bad results (err). You can store any kind of data on any kind of result.
 *`Result#reason` is an alias of `Result#value`, but is a common
 practice to use `value` for good results and `reason` for bad results.*
 
+### Chaining of results
+
+You can chain results with `Result#and_then` and `Result#or_else` methods,
+both will receive a block using result's value / reason and returns the
+block return or itself, depending on result kind.
+
+```ruby
+  def shout(word)
+    if word == 'marco'
+      Resultr.ok('polo')
+    else
+      Resultr.err('unknown word')
+    end
+  end
+
+  # =========================================
+  # Using #and_then to chaining good results.
+  # =========================================
+
+  shout('marco').and_then { |value| "#{value}!" }
+  # => "polo!"
+
+  shout('foo').and_then { |value| "#{value}!" }
+  # => <Resultr::Result @kind=:err @value="unknown word">
+
+  # =======================================
+  # Using #or_else to chaining bad results.
+  # =======================================
+
+  shout('marco').or_else { |reason| "#{reason}, try 'marco'" }
+  # => <Resultr::Result @kind=:ok @value="polo">
+
+  shout('foo').or_else { |reason| "#{reason}, try 'marco'" }
+  # => "unknown word, try 'marco'"
+
+  # ================================================
+  # Using both to chaining the two kinds of results.
+  # ================================================
+
+  shout('marco').and_then { |v| "#{v}!" }.or_else { |r| "#{r}, try 'marco'" }
+  # => "polo!"
+
+  shout('foo').and_then { |v| "#{v}!" }.or_else { |r| "#{r}, try 'marco'" }
+  # => "unknown word, try 'marco'"
+```
+
 ## License
 
 Resultr is freely distributable under the
 [MIT license](https://github.com/leocamelo/minitooltip/blob/master/LICENSE)
-
-## Author
-
-[@leocamelo](https://twitter.com/@leocamelo)
