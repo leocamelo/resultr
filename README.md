@@ -122,14 +122,14 @@ its called `#thus` and works like a flavor of case statement.
   # ==================================
 
   list_posts.thus do |result|
-    result.ok |value|
+    result.ok do |value|
       render json: { posts: value }
     end
     result.err do |reason|
       render json: { error: reason }
     end
   end
-  # => ["{\"posts\":[]}"]
+  # => ["{\"posts\":[{\"title\":\"The Free Lunch Is Over\"}]}"]
 
   # =====================================
   # Using #thus for branching assignment.
@@ -137,9 +137,9 @@ its called `#thus` and works like a flavor of case statement.
 
   posts = list_posts.thus do |result|
     result.ok # if you omit the block, it returns value
-    result.err { |_reason| [{ title: 'Default post' }] }
+    result.err { |_reason| [{ title: 'The Placeholder Post' }] }
   end
-  # => []
+  # => [{ title: "The Free Lunch Is Over" }]
 ```
 
 ## License
