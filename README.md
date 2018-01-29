@@ -57,9 +57,9 @@ practice to use `value` for good results and `reason` for bad results.*
 
 ### Chaining of results
 
-You can chain results with `Result#and_then` and `Result#or_else` methods,
-both will receive a block using result's value / reason and returns the
-block return or itself, depending on result kind.
+You can chain results with `#and_then` and `#or_else` methods,
+both will receive a block using result's value / reason and returns
+the block return or itself, depending on result kind.
 
 ```ruby
   def shout(word)
@@ -104,7 +104,7 @@ block return or itself, depending on result kind.
 ### Elegant result branching
 
 Resultr provides a sugar syntax for branching results by kind,
-its called `Result#thus` and works like a flavor of case statement.
+its called `#thus` and works like a flavor of case statement.
 
 ```ruby
   def list_posts
@@ -129,6 +129,7 @@ its called `Result#thus` and works like a flavor of case statement.
       render json: { error: reason }
     end
   end
+  # => ["{\"posts\":[]}"]
 
   # =====================================
   # Using #thus for branching assignment.
@@ -138,6 +139,7 @@ its called `Result#thus` and works like a flavor of case statement.
     result.ok { |value| value }
     result.err { |_reason| [] }
   end
+  # => []
 ```
 
 ## License
