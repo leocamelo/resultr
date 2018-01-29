@@ -101,6 +101,45 @@ block return or itself, depending on result kind.
   # => "unknown word, try 'marco'"
 ```
 
+### Elegant result branching
+
+Resultr provides a sugar syntax for branching results by kind,
+its called `Result#thus` and works like a flavor of case statement.
+
+```ruby
+  def list_posts
+    response = get('/posts')
+
+    if response.status == 200
+      Resultr.ok(response.body)
+    else
+      Resultr.err(response.body)
+    end
+  end
+
+  # ==================================
+  # Using #thus for branching actions.
+  # ==================================
+
+  list_posts.thus do |result|
+    result.ok |value|
+      render json: { posts: value }
+    end
+    result.err do |reason|
+      render json: { error: reason }
+    end
+  end
+
+  # =====================================
+  # Using #thus for branching assignment.
+  # =====================================
+
+  posts = list_posts.thus do |result|
+    result.ok { |value| value }
+    result.err { |_reason| [] }
+  end
+```
+
 ## License
 
 Resultr is freely distributable under the
