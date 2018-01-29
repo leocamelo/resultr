@@ -19,12 +19,6 @@ gem 'resultr'
 
 and run `bundle install` from your shell.
 
-To install the gem manually from your shell, run:
-
-```shell
-$ gem install resultr
-```
-
 ## Getting Started
 
 ### Good and bad results
@@ -55,7 +49,7 @@ results (`Resultr.err`). You can store any kind of data on any kind of result.
 *`#reason` is an alias of `#value`, but is a common practice
 to use `#value` for good results and `#reason` for bad results.*
 
-### Chaining of results
+### Chaining results
 
 You can chain results with `#and_then` and `#or_else` methods,
 both will receive a block using result's value / reason and returns
@@ -107,7 +101,7 @@ Resultr provides a sugar syntax for branching results by kind,
 its called `#thus` and works like a flavor of case statement.
 
 ```ruby
-  def list_posts
+  def get_posts
     response = get('/posts')
 
     if response.status == 200
@@ -121,7 +115,7 @@ its called `#thus` and works like a flavor of case statement.
   # Using #thus for branching actions.
   # ==================================
 
-  list_posts.thus do |result|
+  get_posts.thus do |result|
     result.ok do |value|
       render json: { posts: value }
     end
@@ -135,7 +129,7 @@ its called `#thus` and works like a flavor of case statement.
   # Using #thus for branching assignment.
   # =====================================
 
-  posts = list_posts.thus do |result|
+  posts = get_posts.thus do |result|
     result.ok # if you omit the block, it returns value
     result.err { |_reason| [{ title: 'The Placeholder Post' }] }
   end
@@ -145,4 +139,4 @@ its called `#thus` and works like a flavor of case statement.
 ## License
 
 Resultr is freely distributable under the
-[MIT license](https://github.com/leocamelo/minitooltip/blob/master/LICENSE)
+[MIT license](https://github.com/leocamelo/resultr/blob/master/LICENSE)
