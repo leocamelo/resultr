@@ -52,8 +52,8 @@ results (`Resultr.err`). You can store any kind of data on any kind of result.
   # => "foo"
 ```
 
-*`Result#reason` is an alias of `Result#value`, but is a common
-practice to use `value` for good results and `reason` for bad results.*
+*`#reason` is an alias of `#value`, but is a common practice
+to use `#value` for good results and `#reason` for bad results.*
 
 ### Chaining of results
 
