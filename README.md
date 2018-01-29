@@ -136,8 +136,8 @@ its called `#thus` and works like a flavor of case statement.
   # =====================================
 
   posts = list_posts.thus do |result|
-    result.ok { |value| value }
-    result.err { |_reason| [] }
+    result.ok # if you omit the block, it returns value
+    result.err { |_reason| [{ title: 'Default post' }] }
   end
   # => []
 ```
