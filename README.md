@@ -136,6 +136,33 @@ its called `#thus` and works like a flavor of case statement.
   # => [{ title: "The Free Lunch Is Over" }]
 ```
 
+### Raising exceptions for bad results
+
+If you don't want to handle possible result errors, you can use
+`#except!`, that returns the result value when successful or raises
+an exception with the error reason, you can also provides a custom
+message for the exception.
+
+```ruby
+  def write_on(file, text)
+    if File.exist?(file)
+      File.open(file, 'w') { |f| f.write(text) }
+      Resultr.ok(text)
+    else
+      Resultr.err('File not found')
+    end
+  end
+
+  write_on('diary.txt', 'Dear diary').expect!
+  # => "Dear diary"
+
+  write_on('wrong.txt', 'Dear diary').expect!
+  # => Resultr::ExpectationError: File not found
+
+  write_on('wrong.txt', 'Dear diary').except!('Failed to write text')
+  # => Resultr::ExpectationError: Failed to write text
+```
+
 ## License
 
 Resultr is freely distributable under the
