@@ -10,10 +10,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ['@leocamelo']
   spec.email         = ['leonardocamelo.nave@gmail.com']
   spec.summary       = 'Ruby beatiful results'
-  spec.description   = 'Resultr provides a simple interface to function results'
   spec.homepage      = 'https://github.com/leocamelo/resultr'
   spec.license       = 'MIT'
   spec.require_paths = ['lib']
+
+  spec.description = <<~DESCRIPTION
+    Resultr provides a simple interface to work with
+    computation results, highly inspired by Rust results
+    for handling errors on function returns.
+  DESCRIPTION
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test)/})
