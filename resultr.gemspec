@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['@leocamelo']
   spec.email         = ['leonardocamelo.nave@gmail.com']
   spec.summary       = 'Ruby beatiful results'
-  spec.description   = 'Ruby beatiful results'
+  spec.description   = 'Resultr provides a simple interface to function results'
   spec.homepage      = 'https://github.com/leocamelo/resultr'
   spec.license       = 'MIT'
   spec.require_paths = ['lib']
