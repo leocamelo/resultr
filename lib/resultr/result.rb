@@ -34,7 +34,7 @@ module Resultr
       end
     end
 
-    def expect!(message)
+    def expect!(message = @value)
       if ok?
         @value
       else
