@@ -139,7 +139,7 @@ its called `#thus` and works like a flavor of case statement.
 ### Raising exceptions for bad results
 
 If you don't want to handle possible result errors, you can use
-`#except!`, that returns the result value when successful or raises
+`#expect!`, that returns the result value when successful or raises
 an exception with the error reason, you can also provides a custom
 message for the exception.
 
@@ -159,7 +159,7 @@ message for the exception.
   write_on('wrong.txt', 'Dear diary').expect!
   # => Resultr::ExpectationError: File not found
 
-  write_on('wrong.txt', 'Dear diary').except!('Failed to write text')
+  write_on('wrong.txt', 'Dear diary').expect!('Failed to write text')
   # => Resultr::ExpectationError: Failed to write text
 ```
 
