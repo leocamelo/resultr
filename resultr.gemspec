@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test)/})
   end
 
-  spec.add_development_dependency 'bundler', '~> 1.17'
+  spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'minitest', '~> 5.11'
-  spec.add_development_dependency 'rake', '~> 11.3'
+  spec.add_development_dependency 'rake', '~> 10.5'
 end
