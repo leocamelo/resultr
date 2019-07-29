@@ -22,7 +22,7 @@ describe Resultr::ResultProxy do
       result = Resultr.err('foo')
       result_proxy = Resultr::ResultProxy.new(result)
 
-      assert_nil result_proxy.ok { |value| value }
+      assert_nil(result_proxy.ok { |value| value })
     end
 
     it 'returns the result reason when it has failed and using as chain' do
@@ -53,7 +53,7 @@ describe Resultr::ResultProxy do
       result = Resultr.ok('foo')
       result_proxy = Resultr::ResultProxy.new(result)
 
-      assert_nil result_proxy.err { |reason| reason }
+      assert_nil(result_proxy.err { |reason| reason })
     end
 
     it 'returns the result value when it has success and using as chain' do

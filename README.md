@@ -58,9 +58,9 @@ the block return or itself, depending on result kind.
 ```ruby
   def shout(word)
     if word == 'marco'
-      Resultr.ok('polo')
+      Resultr.ok 'polo'
     else
-      Resultr.err('unknown word')
+      Resultr.err 'unknown word'
     end
   end
 
@@ -88,11 +88,11 @@ the block return or itself, depending on result kind.
   # Using both to chaining the two kinds of results.
   # ================================================
 
-  shout('marco').and_then { |v| "#{v}!" }.or_else { |r| "#{r}, try 'marco'" }
-  # => "polo!"
+  shout('marco').and_then { |v| Resultr.ok "#{v}!" }.or_else { |r| Resultr.err "#{r}, try 'marco'" }
+  # => <Resultr::Result @kind=:ok @value="polo!">
 
-  shout('foo').and_then { |v| "#{v}!" }.or_else { |r| "#{r}, try 'marco'" }
-  # => "unknown word, try 'marco'"
+  shout('foo').and_then { |v| Resultr.ok "#{v}!" }.or_else { |r| Resultr.err "#{r}, try 'marco'" }
+  # => <Resultr::Result @kind=:err @value="unknown word, try 'marco'">
 ```
 
 ### Elegant result branching
@@ -105,9 +105,9 @@ its called `#thus` and works like a flavor of case statement.
     response = get('/posts')
 
     if response.status == 200
-      Resultr.ok(response.body)
+      Resultr.ok response.body
     else
-      Resultr.err(response.body)
+      Resultr.err response.body
     end
   end
 

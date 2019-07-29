@@ -34,12 +34,10 @@ module Resultr
       end
     end
 
-    def expect!(message = @value)
-      if ok?
-        @value
-      else
-        raise ::Resultr::ExpectationError, message
-      end
+    def expect!(message = nil)
+      return @value if ok?
+
+      raise ::Resultr::ExpectationError, message || @value
     end
 
     def thus

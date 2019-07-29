@@ -5,6 +5,7 @@ module Resultr
     def initialize(result)
       @result = result
       @resolved = false
+      @resolved_value = nil
     end
 
     def ok
@@ -31,10 +32,10 @@ module Resultr
 
     def resolve_result_if(condition)
       if @resolved
-        @result.value
+        @resolved_value
       elsif @result.send(condition)
         @resolved = true
-        yield @result.value
+        @resolved_value = yield @result.value
       end
     end
   end
