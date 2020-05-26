@@ -1,5 +1,8 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  NewCops: enable
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
